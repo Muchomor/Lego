@@ -4,6 +4,8 @@ import java.util.List;
 
 import pl.capgemini.survival.common.to.SearchCriteriaTo;
 import pl.capgemini.survival.common.to.SearchResultTo;
+import pl.capgemini.survival.common.typ.Condition;
+import pl.capgemini.survival.common.typ.Status;
 import pl.capgemini.survival.persistence.entity.LegoSet;
 
 public interface LegoSetService {
@@ -19,5 +21,8 @@ public interface LegoSetService {
 	List<LegoSet> findAllLegoSets();
 
 	SearchResultTo searchLegoSets(SearchCriteriaTo searchCriteria);
+
+	public List<LegoSet> findByStatusAndCondition(Status s, Condition c);
+
 
 }

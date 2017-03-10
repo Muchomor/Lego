@@ -15,6 +15,8 @@ import pl.capgemini.survival.common.mapper.LegoSetMapper;
 import pl.capgemini.survival.common.mapper.SearchResultMapper;
 import pl.capgemini.survival.common.to.SearchCriteriaTo;
 import pl.capgemini.survival.common.to.SearchResultTo;
+import pl.capgemini.survival.common.typ.Condition;
+import pl.capgemini.survival.common.typ.Status;
 import pl.capgemini.survival.persistence.entity.LegoSet;
 import pl.capgemini.survival.persistence.repo.LegoSetRepository;
 import pl.capgemini.survival.service.LegoSetService;
@@ -93,6 +95,10 @@ public class LegoSetServiceImpl implements LegoSetService {
 		searchResultTo.setLegoSets(result.stream().map(legoSetMapper::mapToLegoSetTo).collect(Collectors.toList()));
 
 		return searchResultTo;
+	}
+	@Override
+	public List<LegoSet> findByStatusAndCondition(Status s, Condition c) {
+		return repo.findByStatusAndCondition(s, c);
 	}
 
 }

@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 
 import pl.capgemini.survival.common.mapper.LegoSetMapper;
 import pl.capgemini.survival.common.to.LegoSetTo;
+import pl.capgemini.survival.common.typ.Condition;
+import pl.capgemini.survival.common.typ.Status;
 import pl.capgemini.survival.persistence.entity.LegoSet;
 import pl.capgemini.survival.service.LegoSetService;
 
@@ -74,6 +76,14 @@ public class LegoSetController {
 	//post ok
 	//put ok
 	//delete ok
+
+	@RequestMapping(path = "/condition", method = RequestMethod.GET)
+	public List<LegoSetTo> conditionTest(){
+		List<LegoSet> ls = legoSetService.findByStatusAndCondition(Status.OWNED, Condition.NEW);
+		List<LegoSetTo> toReturn = new ArrayList<>();
+		for(LegoSet legoSet: ls) toReturn.add(mapper.mapToLegoSetTo(legoSet));
+		return toReturn;
+	}
 
 }
 
