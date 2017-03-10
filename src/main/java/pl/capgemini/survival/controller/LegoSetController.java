@@ -79,7 +79,15 @@ public class LegoSetController {
 
 	@RequestMapping(path = "/condition", method = RequestMethod.GET)
 	public List<LegoSetTo> conditionTest(){
-		List<LegoSet> ls = legoSetService.findByStatusAndCondition(Status.OWNED, Condition.NEW);
+		List<LegoSet> ls = legoSetService.findByLegoStatusAndLegoCondition(Status.OWNED, Condition.NEW);
+		List<LegoSetTo> toReturn = new ArrayList<>();
+		for(LegoSet legoSet: ls) toReturn.add(mapper.mapToLegoSetTo(legoSet));
+		return toReturn;
+	}
+
+	@RequestMapping(path = "/startsWith/{legoName}", method = RequestMethod.GET)
+	public List<LegoSetTo> nameStartsWithQ(@PathVariable ("legoName") String legoName){
+		List<LegoSet> ls = legoSetService.findByLegoNameStartsWith(legoName);
 		List<LegoSetTo> toReturn = new ArrayList<>();
 		for(LegoSet legoSet: ls) toReturn.add(mapper.mapToLegoSetTo(legoSet));
 		return toReturn;

@@ -97,8 +97,13 @@ public class LegoSetServiceImpl implements LegoSetService {
 		return searchResultTo;
 	}
 	@Override
-	public List<LegoSet> findByStatusAndCondition(Status s, Condition c) {
-		return repo.findByStatusAndCondition(s, c);
+	public List<LegoSet> findByLegoStatusAndLegoCondition(Status s, Condition c) {
+		return repo.findByLegoStatusAndLegoCondition(s, c);
+	}
+
+	@Override
+	public List<LegoSet> findByLegoNameStartsWith(String name) {
+		return repo.findByLegoNameStartsWith(name);
 	}
 
 }

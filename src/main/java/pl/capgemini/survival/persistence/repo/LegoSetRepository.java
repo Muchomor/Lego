@@ -15,12 +15,12 @@ public interface LegoSetRepository extends CrudRepository<LegoSet, Long>, LegoSe
 	// TODO TASK 2.0 - JPA Query Methods - Wyszukiwanie zestawow lego zgodnie z
 	// konwencją nazewniczą
 	// Metoda z atrybutami Status status, Condition condition
-	List<LegoSet> findByStatusAndCondition(Status s, Condition c);
+	List<LegoSet> findByLegoStatusAndLegoCondition(Status s, Condition c);
 
 	// TODO TASK 2.1 - @Query adnotacja - wyszukiwanie zestawow lego po początku
 	// nazwy zestawu
 	// Metoda findByLegoNameStartsWith
 
-	@Query("select ls from LegoSet where ls.name = :name")
-	List<LegoSet> findByLegoNameStartsWith(String name);
+	@Query("select ls from LegoSet ls where ls.legoName LIKE ?1%")
+	List<LegoSet> findByLegoNameStartsWith(String legoName);
 }
